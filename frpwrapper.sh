@@ -7,19 +7,16 @@
 type '[[' >/dev/null 2>&1 || alias '[['='['
 type '[[' >/dev/null 2>&1 || exit 1
 
-while getopts 'f:c:o:' OPT; do
+while getopts 'f:o:' OPT; do
     case "${OPT}" in
     f)
         frp_execute_file="${OPTARG}"
-    ;;
-    c)
-        frp_config_file="${OPTARG}"
     ;;
     o)
         frp_options="${OPTARG}"
     ;;
     *)
-        echo "${0##*/}" '<-f <frp execute file>> <-c <frp config>|-o <frp options>>'
+        echo "${0##*/}" '<-f <frp execute file>> <-o <frp options>>'
         exit 1
     ;;
     esac
@@ -33,6 +30,4 @@ done
 [[ ! -x "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 
 
-[[ -z "${frp_config_file}" ]] && exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
-[[ -z "${frp_options}" ]] && exec "${frp_execute_file}" '-c' "${frp_config_file}" | cut -d ' ' -f 3-
-
+[[ -z "${frp_options}" ]] && exit 1 ||  exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
