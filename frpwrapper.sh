@@ -1,6 +1,7 @@
 #!/bin/sh
 
 
+
 #觉得怪异吧？我也这么认为
 #然而有些 sh 真的没有 [[
 #我也是醉了
@@ -30,4 +31,4 @@ done
 [[ ! -x "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 
 
-[[ -z "${frp_options}" ]] && exit 1 ||  exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
+[[ -z "${frp_options}" ]] && exit 1 ||  eval exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
