@@ -24,6 +24,8 @@ while getopts 'f:o:' OPT; do
 done
 
 
+[[ -z "${frp_execute_file}" ]] && echo "${0##*/}" '<-f <frp execute file>> <-o <frp options>>' && exit 1
+
 #不要问我为什么这里这么怪异，我的建议是问 sh
 #为了在路由器上直接使用做出的牺牲
 [[ ! -s "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
@@ -31,4 +33,4 @@ done
 [[ ! -x "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 
 
-[[ -z "${frp_options}" ]] && exit 1 ||  eval exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
+[[ -z "${frp_options}" ]] && exit 1 ||  eval "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
