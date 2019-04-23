@@ -27,6 +27,10 @@ start_service(){
     procd_close_instance
 }
 
+stop_service(){
+    killall frps #克服 procd 没有类似 systemd 的 KillMode= 选项导致停止服务只是结束脚本的情况（然而这个方法会造成误伤
+}
+
 reload_service(){
     #frps 没有重载
     #对了，这个有必要吗？
