@@ -26,7 +26,7 @@ done
 [[ -z "${frp_execute_file}" ]] && echo "${0##*/}" '<-f <frp execute file>> <-o <frp options>>' && exit 1
 
 #不要问我为什么这里这么怪异，我的建议是问 sh
-#为了在路由器上直接使用做出的牺牲
+#为了 sh 做出的牺牲
 [[ ! -s "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 [[ ! -r "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 [[ ! -x "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
