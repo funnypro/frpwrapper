@@ -32,4 +32,4 @@ done
 [[ ! -x "${frp_execute_file}" ]] && echo "frp execute file invalid" && exit 1
 
 
-[[ -z "${frp_options}" ]] && exit 1 || eval "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
+[[ -z "${frp_options}" ]] && exit 1 || eval exec "${frp_execute_file}" "${frp_options}" | cut -d ' ' -f 3-
