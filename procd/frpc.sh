@@ -30,6 +30,6 @@ start_service(){
 reload_service(){
     #比较懒，所以没用重载
     #一部分原因是要查配置文件，然后不太会
-    #"${PROG}" -f "${FRPFILE}" -o "restart -c ${CONFFILE}"
+    #"${PROG}" -f "${FRPFILE}" -o "reload -c ${CONFFILE}"
     restart
 }
